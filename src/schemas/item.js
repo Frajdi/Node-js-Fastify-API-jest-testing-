@@ -39,6 +39,17 @@ const getItemsOpts = {
         response:{
             200:{
                 type: 'array',
+                items: item
+            }
+        }
+    }
+}
+
+const getItemsOptsv2 = {
+    schema:{
+        response:{
+            200:{
+                type: 'array',
                 items: itemv2
             }
         }
@@ -46,6 +57,14 @@ const getItemsOpts = {
 }
 
 const getItemOpts = {
+    schema: {
+        response: {
+            200: item
+        }
+    }
+}
+
+const getItemOptsv2 = {
     schema: {
         response: {
             200: itemv2
@@ -155,4 +174,4 @@ const editItemOptsv2 = {
 
 
 
-module.exports = {getItemsOpts, getItemOpts, postItemOpts, deleteItemOpts, editItemOpts, postItemOptsv2, editItemOptsv2}
+module.exports = {getItemsOpts, getItemOpts, postItemOpts, deleteItemOpts, editItemOpts, postItemOptsv2, editItemOptsv2, getItemsOptsv2, getItemOptsv2}

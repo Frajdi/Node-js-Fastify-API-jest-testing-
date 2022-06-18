@@ -1,4 +1,5 @@
 const {build} = require("../src/app")
+const env = require('../src/config/env')
 
 const createTableSQL = 
     "CREATE TABLE IF NOT EXISTS Items (id SERIAL, name VARCHAR(200), description VARCHAR(500), gross_amount NUMERIC, net_amount NUMERIC, excluded_vat_amount NUMERIC, PRIMARY KEY(id));";
@@ -10,7 +11,7 @@ const insertFakeItemSQL =
 
 module.exports = function setupTestEnv(){
     const app = build({logger: true}, {},
-        {connectionString : 'postgres://postgres@localhost:5432/postgres_test'})
+        {connectionString : env.POSTGRES_DB_CONNECTION_STRING})
 
     beforeAll( async()=>{
         await app.ready()

@@ -1,4 +1,4 @@
-const {getItemsOpts, getItemOpts, postItemOptsv2, deleteItemOpts, editItemOptsv2} = require('../../schemas/item')
+const {postItemOptsv2, deleteItemOpts, editItemOptsv2, getItemOptsv2, getItemsOptsv2} = require('../../schemas/item')
 
 const vatCalculator = require('../../utils/vatCalculator')
 
@@ -6,7 +6,7 @@ const vatCalculator = require('../../utils/vatCalculator')
 
 const itemRoute_v2 = async(fastify, options, done)=> {
 
-    fastify.get('/',getItemsOpts, async (request, reply) => {
+    fastify.get('/',getItemsOptsv2, async (request, reply) => {
         try {
             const client = await fastify.pg.connect();
             const {rows} = await fastify.pg.query("SELECT * FROM items")
@@ -16,7 +16,7 @@ const itemRoute_v2 = async(fastify, options, done)=> {
         }
     })
 
-    fastify.get('/:id',getItemOpts, async (request, reply) => {
+    fastify.get('/:id',getItemOptsv2, async (request, reply) => {
         try{
             const {id} = request.params
             const {rows} = await fastify.pg.query("SELECT * FROM items WHERE id=$1", [id])
